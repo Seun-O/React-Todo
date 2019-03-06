@@ -1,6 +1,8 @@
 import React from "react";
+import "./App.css";
 import TodoList from "./components/TodoComponents/TodoList";
 import TodoForm from "./components/TodoComponents/TodoForm";
+import TodoHeader from "./components/TodoComponents/TodoHeader";
 
 let index = 0;
 class App extends React.Component {
@@ -8,10 +10,7 @@ class App extends React.Component {
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
   state = {
-    todos: [
-      { id: 1, task: "Bake Cookies", complete: false },
-      { id: 2, task: "Wash Plates", complete: false }
-    ]
+    todos: []
   };
 
   _markDone = id => {
@@ -47,6 +46,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <TodoHeader />
         <TodoList todos={this.state.todos} markDone={this._markDone} />
         <TodoForm
           addTodo={this._addTodo}

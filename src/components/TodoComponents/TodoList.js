@@ -6,7 +6,7 @@ import Todo from "./Todo";
 const TodoList = props => {
   const todos = props.todos;
   return (
-    <div>
+    <div className="ui middle aligned animated list">
       {todos.map(todo => (
         <Todo key={todo.id} todo={todo} markDone={props.markDone} />
       ))}

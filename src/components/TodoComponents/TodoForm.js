@@ -8,7 +8,7 @@ class TodoForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.addTodo(this.state.task);
+    this.state.task === "" ? null : this.props.addTodo(this.state.task);
     this.setState({ task: "" });
   };
 
@@ -19,19 +19,37 @@ class TodoForm extends Component {
 
   render() {
     return (
-      <form>
-        <input
-          type="text"
-          value={this.state.task}
-          onChange={this._onChange}
-          placeholder="...todo"
-        />
-        <button type="submit" onClick={this.onSubmit}>
-          Add Todo
-        </button>
-        <button type="submit" onClick={this.onClear}>
-          Clear Completed
-        </button>
+      <form className="ui form">
+        <div className=" field">
+          <input
+            type="text"
+            value={this.state.task}
+            onChange={this._onChange}
+            placeholder="...todo"
+          />
+        </div>
+        <div className="ui buttons">
+          <button
+            style={{ transition: "all .7s ease-out" }}
+            className={
+              this.state.task === ""
+                ? "ui positive disabled"
+                : "ui positive button"
+            }
+            type="submit"
+            onClick={this.onSubmit}
+          >
+            Add Todo
+          </button>
+          <div className="or" data-text="or" />
+          <button
+            className="ui negative button"
+            type="submit"
+            onClick={this.onClear}
+          >
+            Clear Completed
+          </button>
+        </div>
       </form>
     );
   }
