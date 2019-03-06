@@ -2,23 +2,13 @@
 // feel free to change this component.js into TodoList.js
 import React from "react";
 import Todo from "./Todo";
-const listItems = [
-  {
-    id: 1,
-    task: "Organized Garage",
-    completed: false
-  },
-  {
-    id: 2,
-    task: "Bake Cookies",
-    completed: true
-  }
-];
-const TodoList = () => {
+
+const TodoList = props => {
+  const todos = props.todos;
   return (
     <div>
-      {listItems.map(item => (
-        <Todo key={item.id} task={item.task} completed={item.completed} />
+      {todos.map(todo => (
+        <Todo key={todo.id} todo={todo} markDone={props.markDone} />
       ))}
     </div>
   );
