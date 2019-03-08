@@ -19,7 +19,6 @@ const TodoHeader = ({ todos }) => {
 };
 
 const headerStyles = {
-  textAlign: "center !important",
   fontSize: "4rem"
 };
 export default TodoHeader;
