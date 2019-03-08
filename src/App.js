@@ -10,7 +10,8 @@ class App extends React.Component {
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
   state = {
-    todos: []
+    todos: [],
+    search: ""
   };
 
   _markDone = id => {
@@ -36,22 +37,33 @@ class App extends React.Component {
   };
 
   _clearTodo = () => {
-    this.setState({
-      todos: [
-        ...this.state.todos.filter(todo => (todo.complete ? false : true))
-      ]
+    this.setState(pS => {
+      return {
+        todos: pS.todos.filter(todo => !todo.complete)
+      };
     });
   };
 
+  _todoSearch = e => {
+    this.setState({ search: e.target.value });
+  };
   render() {
     return (
-      <div>
-        <TodoHeader />
-        <TodoList todos={this.state.todos} markDone={this._markDone} />
+      <div className="todo ui raised very padded text container segment">
+        <TodoHeader todos={this.state.todos} />
+        <div className="ui divider" />
+
+        <TodoList
+          todos={this.state.todos}
+          markDone={this._markDone}
+          search={this.state.search}
+        />
         <TodoForm
           addTodo={this._addTodo}
           clearTodo={this._clearTodo}
           todos={this.state.todos}
+          todoSearch={this._todoSearch}
+          search={this.state.search}
         />
       </div>
     );

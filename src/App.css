@@ -2,3 +2,7 @@ body {
   margin: 0 auto;
   width: 800px;
 }
+
+.todo {
+  margin-top: 4rem !important;
+}

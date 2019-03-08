@@ -3,12 +3,14 @@
 import React from "react";
 import Todo from "./Todo";
 
-const TodoList = props => {
-  const todos = props.todos;
+const TodoList = ({ todos, markDone, search }) => {
+  const filteredList = todos.filter(todo => {
+    return todo.task.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+  });
   return (
     <div className="ui middle aligned animated list">
-      {todos.map(todo => (
-        <Todo key={todo.id} todo={todo} markDone={props.markDone} />
+      {filteredList.map(todo => (
+        <Todo key={todo.id} todo={todo} markDone={markDone} />
       ))}
     </div>
   );
